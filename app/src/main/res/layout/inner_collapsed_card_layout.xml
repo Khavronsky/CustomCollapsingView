@@ -6,6 +6,13 @@
     android:paddingBottom="14dp"
     android:paddingEnd="16dp"
     android:paddingStart="16dp">
+    <FrameLayout
+        android:id="@+id/testest"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="#000000">
+
+    </FrameLayout>
 
     <ImageView
         android:id="@+id/collapsed_card_thumbs"
@@ -46,11 +53,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="#bfae6060"
         android:layout_alignStart="@+id/collapsed_card_title_layout">
 
 
         <LinearLayout
             android:id="@+id/collapsed_card_value_layout"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
