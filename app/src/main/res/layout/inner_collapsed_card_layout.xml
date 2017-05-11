@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="164dp"
+    android:background="#00000000"
+    android:paddingBottom="14dp"
+    android:paddingEnd="16dp"
+    android:paddingStart="16dp">
+
+    <ImageView
+        android:id="@+id/collapsed_card_thumbs"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="top|start"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp" />
+
+    <LinearLayout
+        android:id="@+id/collapsed_card_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/collapsed_card_thumbs"
+        android:background="#00000000"
+        android:orientation="vertical">
+        <!--todo заменить на customTextView-->
+        <TextView
+            android:id="@+id/collapsed_card_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Пляски святого Вита. Гимнастика Хантингтона"
+            android:textSize="18sp" />
+        <!--todo заменить на customTextView-->
+        <TextView
+            android:id="@+id/collapsed_card_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Невро-Кардио"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/collapsed_card_description_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/collapsed_card_title_layout">
+
+
+        <LinearLayout
+            android:id="@+id/collapsed_card_value_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:orientation="horizontal">
+                <!--todo заменить на customTextView-->
+                <TextView
+                    android:id="@+id/collapsed_card_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="46 "
+                    android:textSize="32sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:orientation="vertical">
+                    <!--todo заменить на customTextView-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#00000000"
+                        android:text="ккал"
+                        android:textSize="14sp"
+                        android:visibility="invisible" />
+                    <!--todo заменить на customTextView-->
+                    <TextView
+                        android:id="@+id/collapsed_card_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="ккал"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00000000">
+                <!--todo заменить на customTextView-->
+                <TextView
+                    android:id="@+id/collapsed_card_extra_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="за 23 мин"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/collapsed_card_alert_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:visibility="gone">
+            <!--todo заменить на customTextView-->
+            <TextView
+                android:id="@+id/collapsed_card_alert_textline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Расчет калорий неприменим"
+                android:textColor="#64ff0000"
+                android:textSize="14sp" />
+            <!--todo заменить на customTextView-->
+            <TextView
+                android:id="@+id/collapsed_card_alert_textline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Узнать почему?"
+                android:textColor="#ff0000"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</RelativeLayout>
