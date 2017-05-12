@@ -27,7 +27,7 @@
             android:id="@+id/collapsing_view_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentScrim="#00dddfe2"
+            app:contentScrim="#dddfe2"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <android.support.v7.widget.Toolbar

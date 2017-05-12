@@ -5,12 +5,10 @@ import android.content.Context;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
-import static com.khavronsky.appbar2test.InnerCollapsedCard.IMAGE_NAME;
 import static com.khavronsky.appbar2test.InnerCollapsedCard.SUB_TITLE_NAME;
 import static com.khavronsky.appbar2test.InnerCollapsedCard.TITLE_NAME;
 import static com.khavronsky.appbar2test.InnerCollapsedCard.VALUE_LAYOUT_NAME;
@@ -37,11 +35,9 @@ public class CollapsedCardBehavior extends CoordinatorLayout.Behavior<InnerColla
 
     private float mStartTitleLayoutX;
 
-    private float mStartImageViewY;
-
     private ICollapsedListener mListener;
 
-    float asd = 0;
+    private float mAbsoluteStartImageViewY = 0;
 
     public CollapsedCardBehavior() {
     }
@@ -67,15 +63,11 @@ public class CollapsedCardBehavior extends CoordinatorLayout.Behavior<InnerColla
         child.setAlpha((alpha));
         //сохраняем координаты элементов в полностью раскрытом состоянии
 
-        float qwe = 0;
+        float currentPositionOfDescriptionLayout = 0;
         if (mFirstSet) {
             startPosition(child);
-//            child.getTestest().setY(child.getDescriptionLayout().getY());
-            asd = getYCoordinate(child.getImageView()) + child.getImageView().getHeight() ;
         }
-        qwe = getYCoordinate(child.getDescriptionLayout())+ child.getDescriptionLayout().getHeight() ;
-        Log.d("qwer", "asd: " + asd);
-        Log.d("qwer", "qwe: " + qwe);
+        currentPositionOfDescriptionLayout = getYCoordinate(child.getDescriptionLayout());
         //изменение размеров элементов
         setScale(child.getTitleLayout());
         setScale(child.getImageView());
@@ -83,19 +75,16 @@ public class CollapsedCardBehavior extends CoordinatorLayout.Behavior<InnerColla
         //анимация движения элементов
         child.getTitleLayout().setY((mStartTitleLayoutY + dependency.getY() * 0.45f));
         child.getTitleLayout().setX((mStartTitleLayoutX - horizontalCorrection(child.getTitleLayout())));
-        if (asd > qwe) {
-            child.getImageView().setY(mStartImageViewY + (dependency.getY() + 450.0f));
+        if (mAbsoluteStartImageViewY <= currentPositionOfDescriptionLayout) {
             child.getDescriptionLayout().setY((mStartLayoutY + dependency.getY() * 0.8f));
         } else {
             child.getDescriptionLayout().setY((mStartLayoutY + dependency.getY() * 0.8f));
-            child.getImageView().setY(mStartImageViewY);
-//            child.getDescriptionLayout().setY(((mStartLayoutY - 360.0f) + dependency.getY() + 450.0f));
         }
         child.getDescriptionLayout().setX((mStartLayoutX - horizontalCorrection(child.getDescriptionLayout())));
         //скрытие элементов
         hideView(child, TITLE_NAME);
         hideView(child, SUB_TITLE_NAME);
-        hideView(child, IMAGE_NAME);
+        hideView(child, VALUE_LAYOUT_NAME);
 
         return true;
     }
@@ -141,16 +130,13 @@ public class CollapsedCardBehavior extends CoordinatorLayout.Behavior<InnerColla
                 v.setVisibility(visibility);
                 mListener.setSubTitleVisibility(visibility);
                 break;
-            case IMAGE_NAME:
-                v = customLayout.getImageView();
+            case VALUE_LAYOUT_NAME:
+                v = customLayout.getDescriptionLayout();
                 if (mPrimaryY > getYCoordinate(v) - (v.getHeight() / 2 - v.getHeight() / 2 * alpha)) {
                     visibility = INVISIBLE;
-                    Log.d("asdf", "hideView: ");
                 }
                 v.setVisibility(visibility);
-                customLayout.getDescriptionLayout().setVisibility(visibility);
-                break;
-            case VALUE_LAYOUT_NAME:
+                customLayout.getImageView().setVisibility(visibility);
                 break;
         }
     }
@@ -161,13 +147,14 @@ public class CollapsedCardBehavior extends CoordinatorLayout.Behavior<InnerColla
 
     private void startPosition(final InnerCollapsedCard child) {
 
+        //верхняя граница CollapsedCard, при контакте с которой элементы скрываются
+        mPrimaryY = getYCoordinate(child);
+
         mStartLayoutY = child.getDescriptionLayout().getY();
         mStartLayoutX = child.getDescriptionLayout().getX();
         mStartTitleLayoutY = child.getTitleLayout().getY();
         mStartTitleLayoutX = child.getTitleLayout().getX();
-        mStartImageViewY = child.getImageView().getY();
-        //верхняя граница CollapsedCard, при контакте с которой элементы скрываются
-        mPrimaryY = getYCoordinate(child);
+        mAbsoluteStartImageViewY = getYCoordinate(child.getImageView());
 
         mFirstSet = false;
     }
