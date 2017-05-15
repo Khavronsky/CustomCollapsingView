@@ -21,12 +21,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setToolbar() {
         Toolbar toolbar = mCustomCollapsingView.getToolbar();
-        toolbar.setNavigationIcon(R.drawable.arrow_back);
-        toolbar.setNavigationOnClickListener(this);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+        toolbar.setNavigationOnClickListener(this);
     }
 
     private void createMyView() {
